@@ -2,14 +2,11 @@ package com.controller;
 
 import com.entity.Person;
 import com.service.PersonService;
-import com.service.TradeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -20,9 +17,6 @@ import java.util.List;
 public class personController {
     @Autowired
     PersonService personService;
-
-    @Resource
-    TradeService tradeService;
 
     @RequestMapping("/findAllPerson")
     public void findAll(){
@@ -46,10 +40,4 @@ public class personController {
         }
     }
 
-    @RequestMapping("futureTrades")
-    @ResponseBody
-    public String futureTrades(String symbol,String cont) throws Exception {
-         String resp  = tradeService.futureTrades(symbol,cont);
-         return resp;
-    }
 }
