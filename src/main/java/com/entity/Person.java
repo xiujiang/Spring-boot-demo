@@ -18,7 +18,7 @@ public class Person{
 
     private Date createTime;
 
-    @Column(name = "id")
+    @Column(name="id")
     public int getId() {
         return id;
     }
