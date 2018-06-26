@@ -14,4 +14,10 @@ public class TradeConstant {
 
     public static String transSymbol = "iost_usdt,lrc_usdt";
 
+
+
+    //coinParkConstant
+    public static String coinParkApi = "";
+    public static String coinParkSymbol = "";
+
 }
