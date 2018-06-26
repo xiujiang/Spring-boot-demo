@@ -9,17 +9,23 @@ public class OrderInfoBean {
     private String orderId;
     private String secret;
     private String sign;
-
+    private String buyOrSell;
+    private String amount;
+    private String price;
+    private String index;
     public OrderInfoBean(String apiKey,String symbol,String orderId){
         this.apiKey = apiKey;
         this.symbol = symbol;
         this.orderId = orderId;
     }
-    public OrderInfoBean(String apiKey,String secret,String symbol,String orderId){
+    public OrderInfoBean(String apiKey,String secret,String symbol,String orderId,String buyOrSell,String amount,String price){
         this.apiKey = apiKey;
         this.symbol = symbol;
         this.orderId = orderId;
         this.secret = secret;
+        this.buyOrSell = buyOrSell;
+        this.amount = amount;
+        this.price = price;
     }
     public String getApiKey() {
         return apiKey;
@@ -61,6 +67,38 @@ public class OrderInfoBean {
         this.secret = secret;
     }
 
+    public String getBuyOrSell() {
+        return buyOrSell;
+    }
+
+    public void setBuyOrSell(String buyOrSell) {
+        this.buyOrSell = buyOrSell;
+    }
+
+    public String getAmount() {
+        return amount;
+    }
+
+    public void setAmount(String amount) {
+        this.amount = amount;
+    }
+
+    public String getPrice() {
+        return price;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
+    }
+
+    public String getIndex() {
+        return index;
+    }
+
+    public void setIndex(String index) {
+        this.index = index;
+    }
+
     @Override
     public String toString() {
         return "OrderInfoBean{" +
@@ -69,6 +107,10 @@ public class OrderInfoBean {
                 ", orderId='" + orderId + '\'' +
                 ", secret='" + secret + '\'' +
                 ", sign='" + sign + '\'' +
+                ", buyOrSell='" + buyOrSell + '\'' +
+                ", amount='" + amount + '\'' +
+                ", price='" + price + '\'' +
+                ", index='" + index + '\'' +
                 '}';
     }
 }

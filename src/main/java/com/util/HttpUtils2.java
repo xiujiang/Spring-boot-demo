@@ -1,5 +1,6 @@
 package com.util;
 
+import com.alibaba.fastjson.JSONObject;
 import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.HttpStatus;
 import org.apache.commons.httpclient.MultiThreadedHttpConnectionManager;
@@ -17,6 +18,7 @@ import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
+import org.springframework.util.StringUtils;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -149,6 +151,57 @@ public class HttpUtils2 {
 			return bytes;
 		}
 	}
+
+
+
+	public static String postJson(String url,JSONObject json) throws Exception {
+		//1. 创建Httpclient对象
+		CloseableHttpClient httpclient = new SSLClient();
+
+		//2. 创建http POST请求
+		HttpPost httpPost = new HttpPost(url);
+		//3. 伪造为Firefox浏览器
+		httpPost.setHeader("User-Agent", "Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0");
+//		httpPost.setHeader("Content-Type", "application/x-www-form-urlencoded");
+		httpPost.setHeader("Accept", "application/json");
+		//4. 构造form表单
+		// 设置2个post参数，一个是scope、一个是q
+		List<NameValuePair> parameters = new ArrayList<NameValuePair>(0);
+		if (!StringUtils.isEmpty(json)) {
+			Iterator<String> it = json.keySet().iterator();
+			System.out.println("11111111111111111111111111111111111"+it.toString());
+			while (it.hasNext()) {
+				String next = it.next();
+				parameters.add(new BasicNameValuePair(next, String.valueOf(json.get(next))));
+			}
+		}
+		//5. 构造一个form表单式的实体
+		UrlEncodedFormEntity formEntity = new UrlEncodedFormEntity(parameters);
+		//6. 将请求实体设置到httpPost对象中
+		httpPost.setEntity(formEntity);
+
+		CloseableHttpResponse response = null;
+		String content = null;
+		try {
+			//7. 执行请求
+			response = httpclient.execute(httpPost);
+			// 判断返回状态是否为200
+//			System.out.println("httpresponse:"+response);
+			if (response.getStatusLine().getStatusCode() == 200) {
+				content = EntityUtils.toString(response.getEntity(), "UTF-8");
+
+			}
+		}catch (Exception e){
+			e.printStackTrace();
+		}finally {
+			if (response != null) {
+				response.close();
+			}
+//            httpclient.close();
+			return content;
+		}
+	}
+
 
 	public static String getWebContentByJsonPost(String url, String objectString)
 			throws Exception {

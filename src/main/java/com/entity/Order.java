@@ -17,6 +17,7 @@ public class Order{
     @Id
     private int id;
   	private String orderId;
+  	private String merNo;
     private String symbol;
     private String type;
     private BigDecimal price;
@@ -107,11 +108,20 @@ public class Order{
         this.lastUpdateTime = lastUpdateTime;
     }
 
+    public String getMerNo() {
+        return merNo;
+    }
+
+    public void setMerNo(String merNo) {
+        this.merNo = merNo;
+    }
+
     @Override
     public String toString() {
         return "Order{" +
                 "id=" + id +
-                ", order_id='" + orderId + '\'' +
+                ", orderId='" + orderId + '\'' +
+                ", merNo='" + merNo + '\'' +
                 ", symbol='" + symbol + '\'' +
                 ", type='" + type + '\'' +
                 ", price=" + price +

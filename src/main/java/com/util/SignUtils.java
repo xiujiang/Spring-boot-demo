@@ -50,10 +50,16 @@ public class SignUtils {
     }
 
 
-    public static String coinParkSign(JSONObject jsonObject,String secret) throws NoSuchAlgorithmException, UnsupportedEncodingException {
+    public static String coinParkSign(String jsonObject,String secret) throws NoSuchAlgorithmException, UnsupportedEncodingException {
+        System.out.println(jsonObject);
       byte[] bytes = HMacMD5.getHmacMd5Bytes(secret.getBytes(),jsonObject.toString().getBytes());
 
       String s = HMacMD5.byteArrayToHexString(bytes);
       return s;
+    }
+
+    public static void main(String[] args) throws UnsupportedEncodingException, NoSuchAlgorithmException {
+        String s = coinParkSign("[{\"cmd\":\"user/userInfo\",\"body\":{}}]","7b58254791ada6c0194e6341953f862aff9a91b5");
+        System.out.println(s);
     }
 }
