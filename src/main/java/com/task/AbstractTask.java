@@ -12,5 +12,5 @@ public abstract  class AbstractTask {
 
     private String Key="KEY";
 
-    public abstract  void execute();
+    public abstract  void execute() throws Exception;
 }

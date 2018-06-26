@@ -2,7 +2,6 @@ package com.task;
 
 import com.entity.Person;
 import com.service.PersonService;
-import org.springframework.scheduling.annotation.Scheduled;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -16,7 +15,7 @@ public class PersonTask extends AbstractTask {
     @Resource
     private PersonService personService;
 
-    @Scheduled(cron = "0/5 * * * * ? ")
+//    @Scheduled(cron = "0/5 * * * * ? ")
     @Override
     public void execute() {
         logger.info("执行任务");

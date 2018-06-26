@@ -1,5 +1,9 @@
 package com.controller;
 
+import com.bean.OrderInfoBean;
+import com.bean.TradeBean;
+import com.dao.OrderDao;
+import com.entity.Order;
 import com.entity.Person;
 import com.service.PersonService;
 import com.service.TradeService;
@@ -10,7 +14,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import java.math.BigDecimal;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by joel on 2017/8/10.
@@ -22,6 +28,9 @@ public class personController {
     PersonService personService;
     @Resource
     TradeService tradeService;
+
+    @Resource
+    OrderDao orderDao;
 
     @RequestMapping("/findAllPerson")
     public void findAll(){
@@ -37,18 +46,38 @@ public class personController {
         System.out.println(personService.findPersonByName(name).toString());
     }
 
-    @RequestMapping("/findAll")
+    @RequestMapping("/getOrder")
     public void findAllPerson(){
-        List<Person> personList = personService.findAllPerson();
-        for (int i = 0; i < personList.size(); i++) {
-            System.out.println(personList.get(i).toString());
-        }
+        List<Order> or = orderDao.findAll();
+        System.out.println(or);
+
+    }
+    @RequestMapping("/getOrderName")
+    public void findAllPerson12(){
+        List<Order> or = orderDao.findByType("buy");
+        System.out.println(or);
+
+    }
+    @RequestMapping("/SellOrBuyTrade")
+    @ResponseBody
+    public Map<String, String> SellOrBuyTrade(String apiKey,String symbol,String type,String price,String amount) throws Exception{
+        TradeBean tradeBean = new TradeBean(apiKey,symbol,type,new BigDecimal(price),new BigDecimal(amount));
+        Map<String, String> response = tradeService.SellOrBuyTrade(tradeBean);
+        return response;
     }
 
-    @RequestMapping("/futureTrades")
+    @RequestMapping("/ticker")
     @ResponseBody
-    public String futureTrades(String symbol,String contractType) throws Exception{
-        String response = tradeService.futureTrades(symbol,contractType);
+    public Map<String, String> ticker(String symbol) throws Exception{
+        Map<String, String> response = tradeService.ticker(symbol);
+        return response;
+    }
+
+    @RequestMapping("/orderInfo")
+    @ResponseBody
+    public Map<String, String> orderInfo(String symbol,String orderId,String api) throws Exception{
+        OrderInfoBean od = new OrderInfoBean(api,symbol,orderId);
+        Map<String, String> response = tradeService.orderInfo(od);
         return response;
     }
 
