@@ -15,6 +15,9 @@ import java.security.NoSuchAlgorithmException;
 import java.security.NoSuchProviderException;
 import java.util.List;
 
+/**
+ * eth api
+ */
 public class AccountService {
     private static Parity parity = ParityClient.getParity();
 

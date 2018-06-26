@@ -1,5 +1,12 @@
 package com.util;
 
+import org.apache.commons.httpclient.HttpClient;
+import org.apache.commons.httpclient.HttpStatus;
+import org.apache.commons.httpclient.MultiThreadedHttpConnectionManager;
+import org.apache.commons.httpclient.methods.PostMethod;
+import org.apache.commons.httpclient.methods.StringRequestEntity;
+import org.apache.commons.httpclient.protocol.Protocol;
+import org.apache.commons.httpclient.protocol.ProtocolSocketFactory;
 import org.apache.http.HttpEntity;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
@@ -19,6 +26,7 @@ import java.util.Map;
 public class HttpUtils2 {
 
 	static PoolingHttpClientConnectionManager cm = new PoolingHttpClientConnectionManager();
+	static MultiThreadedHttpConnectionManager connectionManager = new MultiThreadedHttpConnectionManager();
 
 	static {
 		// 设置最大连接数
@@ -142,6 +150,31 @@ public class HttpUtils2 {
 		}
 	}
 
+	public static String getWebContentByJsonPost(String url, String objectString)
+			throws Exception {
+		long start = System.currentTimeMillis();
+		PostMethod post = new PostMethod(url);
+		StringRequestEntity stringRequestEntity = new StringRequestEntity(objectString, "application/json", "UTF-8");
+		post.setRequestEntity(stringRequestEntity);
+		post.addRequestHeader("Content-type", "application/json; charset=" + "UTF-8");
+		post.setRequestHeader("Accept", "application/json");
 
+		ProtocolSocketFactory fcty = new com.util.MySecureProtocolSocketFactory();
+		Protocol.registerProtocol("https", new Protocol("https", fcty, 443));
+		HttpClient client = new HttpClient(connectionManager);
+	 	try {
+			client.setTimeout(30000);
+			int statusCode = client.executeMethod(post);
+			if (statusCode != HttpStatus.SC_OK) {
+				System.err.println("Method failed: " + post.getStatusLine());
+				return null;
+			}
+			byte[] responseBody = post.getResponseBody();
+			return new String(responseBody, "UTF-8");
+		} finally {
+			System.out.println("excute httpclient times #######" + (System.currentTimeMillis() - start) + "ms");
+			post.releaseConnection();
+		}
+	}
 
 }
