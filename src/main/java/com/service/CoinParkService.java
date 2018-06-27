@@ -6,12 +6,9 @@ import com.alibaba.fastjson.JSONObject;
 import com.bean.OrderInfoBean;
 import com.util.HttpUtils2;
 import com.util.SignUtils;
-import org.aspectj.weaver.ast.Or;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
-import java.io.UnsupportedEncodingException;
-import java.security.NoSuchAlgorithmException;
 import java.util.HashMap;
 import java.util.Map;
 

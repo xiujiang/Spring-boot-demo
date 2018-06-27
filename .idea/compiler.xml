@@ -10,9 +10,8 @@
         <module name="SpringBootProj" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="SpringBoot" target="1.6" />
-      <module name="SpringBootProj" target="1.6" />
+    <bytecodeTargetLevel target="1.7">
+      <module name="SpringBootProj" target="8" />
     </bytecodeTargetLevel>
   </component>
 </project>

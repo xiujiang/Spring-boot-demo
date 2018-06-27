@@ -13,8 +13,6 @@ public interface OrderDao  extends JpaRepository<Order, Long> {
     @Query(value="select * from order_s",nativeQuery = true)
     List<Order> findAll(String Name);
 
-
-
     @Query(value="select * from order_s where type = ?1 ",nativeQuery = true)
     List<Order> findByType(String type);
 
