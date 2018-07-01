@@ -7,7 +7,9 @@ import com.bean.TradeBean;
 import com.constant.TradeConstant;
 import com.dao.OrderDao;
 import com.entity.Order;
+import com.service.OkexService;
 import com.service.TradeService;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
@@ -20,10 +22,10 @@ import java.util.Map;
 /**
  * Created by joel on 2018/1/13.
  */
-@Component
+//@Component
 public class SellTask extends AbstractTask{
     @Resource
-    TradeService tradeService;
+    OkexService okexService;
     @Resource
     OrderDao orderDao;
     private static final OrderInfoBean defaultOrderInfoBean;
@@ -37,7 +39,7 @@ public class SellTask extends AbstractTask{
         orderInfoBean = new OrderInfoBean(TradeConstant.api,TradeConstant.symbol,"");
         tradeBean = new TradeBean(TradeConstant.api,TradeConstant.symbol,"",new BigDecimal(0),new BigDecimal(0));
     }
-//    @Scheduled(cron = "0/1 * * * * ? ")
+    @Scheduled(cron = "0/1 * * * * ? ")
     @Override
     public void execute() throws Exception {
         if("true".equals(TradeConstant.closeTradeSign)){
@@ -49,7 +51,7 @@ public class SellTask extends AbstractTask{
        List<Order> sellOrders = orderDao.findByStatusAndType("0","sell");
        for(Order order:sellOrders){
            orderInfoBean.setOrderId(order.getOrderId());
-           Map<String,String> maps = tradeService.orderInfo(orderInfoBean);
+           Map<String,String> maps = okexService.orderInfo(orderInfoBean);
            String result = maps.get("result");
            if("true".equals(result) && !StringUtils.isEmpty(maps.get("orders"))) {
                String orderList = maps.get("orders");
@@ -72,7 +74,7 @@ public class SellTask extends AbstractTask{
         }
         Order order = orders.get(0);
         orderInfoBean.setOrderId(order.getOrderId());
-        Map<String,String> maps = tradeService.orderInfo(orderInfoBean);
+        Map<String,String> maps = okexService.orderInfo(orderInfoBean);
         String result = maps.get("result");
         if("true".equals(result) && !"[]".equals(maps.get("orders"))){
            String orderList = maps.get("orders");
@@ -85,7 +87,7 @@ public class SellTask extends AbstractTask{
                 orderDao.save(order);
                 System.out.println("开始卖出订单"+order.getOrderId());
                 //卖出订单
-                Map<String,String> tickerMap = tradeService.ticker(defaultOrderInfoBean.getSymbol());
+                Map<String,String> tickerMap = okexService.ticker(defaultOrderInfoBean.getSymbol());
                 String ticker = tickerMap.get("ticker");
                 JSONObject tickerJson = JSONObject.parseObject(ticker);
                 BigDecimal lastPrice = new BigDecimal(tickerJson.get("last").toString());
@@ -101,7 +103,7 @@ public class SellTask extends AbstractTask{
                 Double amount = Double.parseDouble(order.getAmount());
                 tradeBean.setAmount(new BigDecimal(amount-0.5));
                 tradeBean.setType("sell");
-                Map<String,String> tradeMap = tradeService.SellOrBuyTrade(tradeBean);
+                Map<String,String> tradeMap = okexService.SellOrBuyTrade(tradeBean);
                 String tradeResult = tradeMap.get("result");
                 if(!StringUtils.isEmpty(tradeResult) && "true".equals(tradeResult)){
                     //插入数据库

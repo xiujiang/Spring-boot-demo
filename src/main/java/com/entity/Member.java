@@ -16,7 +16,7 @@ public class Member {
     @Id
     private int id;
     private String memberName;
-    private String memberNo;
+    private String merNo;
     private String level;
     private String levelDetail;
     private String status;
@@ -40,14 +40,14 @@ public class Member {
         this.memberName = memberName;
     }
 
-    @Column(name="member_no")
-    public String getMemberNo() {
-        return memberNo;
+    public String getMerNo() {
+        return merNo;
     }
 
-    public void setMemberNo(String memberNo) {
-        this.memberNo = memberNo;
+    public void setMerNo(String merNo) {
+        this.merNo = merNo;
     }
+
     @Column(name="level")
     public String getLevel() {
         return level;
@@ -102,7 +102,7 @@ public class Member {
         return "Member{" +
                 "id=" + id +
                 ", memberName='" + memberName + '\'' +
-                ", memberNo='" + memberNo + '\'' +
+                ", merNo='" + merNo + '\'' +
                 ", level='" + level + '\'' +
                 ", levelDetail='" + levelDetail + '\'' +
                 ", status='" + status + '\'' +

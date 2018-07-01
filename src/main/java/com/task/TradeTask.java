@@ -6,7 +6,9 @@ import com.bean.TradeBean;
 import com.constant.TradeConstant;
 import com.dao.OrderDao;
 import com.entity.Order;
+import com.service.OkexService;
 import com.service.TradeService;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
@@ -18,11 +20,11 @@ import java.util.Map;
 /**
  * Created by joel on 2018/1/13.
  */
-@Component
+//@Component
 public class TradeTask extends AbstractTask {
 
     @Resource
-    TradeService tradeService;
+    OkexService okexService;
     @Resource
     OrderDao orderDao;
     private static final OrderInfoBean defaultOrderInfoBean;
@@ -34,7 +36,7 @@ public class TradeTask extends AbstractTask {
         orderInfoBean = new OrderInfoBean(TradeConstant.api,TradeConstant.symbol,"");
         tradeBean = new TradeBean(TradeConstant.api,TradeConstant.symbol,"",new BigDecimal(0),new BigDecimal(0));
     }
-//    @Scheduled(cron = "0/10 * * * * ? ")
+    @Scheduled(cron = "0/10 * * * * ? ")
     @Override
     public void execute() throws Exception {
         if("true".equals(TradeConstant.closeTradeSign)){
@@ -45,13 +47,13 @@ public class TradeTask extends AbstractTask {
 //         BigDecimal TradePrice = TradeAllPrice.divide(new BigDecimal(10),2,BigDecimal.ROUND_HALF_UP);
         BigDecimal TradePrice = new BigDecimal(1);
         //获取当前未完成订单信息
-        Map<String,String> orderMaps = tradeService.orderInfo(defaultOrderInfoBean);
+        Map<String,String> orderMaps = okexService.orderInfo(defaultOrderInfoBean);
         String orderInfoResult = orderMaps.get("result");
         String orders = orderMaps.get("orders");
         if("[]".equals(orders)){
             //没有订单信息，则进行买卖操作
             System.out.println("没有订单信息,执行买入操作");
-            Map<String,String> tickerMap = tradeService.ticker(defaultOrderInfoBean.getSymbol());
+            Map<String,String> tickerMap = okexService.ticker(defaultOrderInfoBean.getSymbol());
             String ticker = tickerMap.get("ticker");
             JSONObject tickerJson = JSONObject.parseObject(ticker);
             if(TradeConstant.highPrice .compareTo(new BigDecimal(tickerJson.get("last").toString())) != -1){
@@ -63,7 +65,7 @@ public class TradeTask extends AbstractTask {
             tradeBean.setAmount(TradePrice.divide(tradeBean.getPrice(),6,BigDecimal.ROUND_HALF_UP));
             tradeBean.setType("buy");
 
-            Map<String,String> tradeMap = tradeService.SellOrBuyTrade(tradeBean);
+            Map<String,String> tradeMap = okexService.SellOrBuyTrade(tradeBean);
             String tradeResult = tradeMap.get("result");
             if(!StringUtils.isEmpty(tradeResult) && "true".equals(tradeResult)){
                 //插入数据库

@@ -5,6 +5,7 @@ import com.bean.TradeBean;
 import com.dao.OrderDao;
 import com.entity.Order;
 import com.entity.Person;
+import com.service.OkexService;
 import com.service.PersonService;
 import com.service.TradeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +28,7 @@ public class personController {
     @Autowired
     PersonService personService;
     @Resource
-    TradeService tradeService;
+    OkexService okexService;
 
     @Resource
     OrderDao orderDao;
@@ -62,14 +63,14 @@ public class personController {
     @ResponseBody
     public Map<String, String> SellOrBuyTrade(String apiKey,String symbol,String type,String price,String amount) throws Exception{
         TradeBean tradeBean = new TradeBean(apiKey,symbol,type,new BigDecimal(price),new BigDecimal(amount));
-        Map<String, String> response = tradeService.SellOrBuyTrade(tradeBean);
+        Map<String, String> response = okexService.SellOrBuyTrade(tradeBean);
         return response;
     }
 
     @RequestMapping("/ticker")
     @ResponseBody
     public Map<String, String> ticker(String symbol) throws Exception{
-        Map<String, String> response = tradeService.ticker(symbol);
+        Map<String, String> response = okexService.ticker(symbol);
         return response;
     }
 
@@ -77,7 +78,7 @@ public class personController {
     @ResponseBody
     public Map<String, String> orderInfo(String symbol,String orderId,String api) throws Exception{
         OrderInfoBean od = new OrderInfoBean(api,symbol,orderId);
-        Map<String, String> response = tradeService.orderInfo(od);
+        Map<String, String> response = okexService.orderInfo(od);
         return response;
     }
 

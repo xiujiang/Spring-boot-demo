@@ -5,7 +5,9 @@ import com.bean.OrderInfoBean;
 import com.constant.TradeConstant;
 import com.dao.CoinPriceDao;
 import com.entity.CoinPrice;
+import com.service.OkexService;
 import com.service.TradeService;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
@@ -18,15 +20,15 @@ import java.util.Map;
  * 统计每秒ok的币价，币交易量，分析交易额
  * Created by joel on 2018/2/26.
  */
-@Component
+//@Component
 public class CollectPriceTask extends AbstractTask{
     @Resource
-    TradeService tradeService;
+    OkexService okexService;
 
     @Resource
     CoinPriceDao coinPriceDao;
     private static final OrderInfoBean defaultOrderInfoBean = new OrderInfoBean(TradeConstant.api, TradeConstant.symbol,"-1");
-//    @Scheduled(cron = "0/2 * * * * ? ")
+    @Scheduled(cron = "0/2 * * * * ? ")
     @Override
     public void execute() throws Exception {
         System.out.println("更新价格.........");
@@ -34,7 +36,7 @@ public class CollectPriceTask extends AbstractTask{
         if(coinSymbols.length > 0){
             for(int i = 0;i < coinSymbols.length; i++){
                 try{
-                    Map<String,String> tickerMap = tradeService.ticker(coinSymbols[i]);
+                    Map<String,String> tickerMap = okexService.ticker(coinSymbols[i]);
                     String ticker = tickerMap.get("ticker");
                     JSONObject tickerJson = JSONObject.parseObject(ticker);
                     CoinPrice coinPrice = new CoinPrice();

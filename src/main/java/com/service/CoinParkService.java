@@ -1,6 +1,7 @@
 package com.service;
 
-import com.CoinExchangerHandler;
+import com.bean.ResponseBean;
+import com.handler.CoinExchangerHandler;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.bean.OrderInfoBean;
@@ -9,6 +10,7 @@ import com.util.SignUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
+import javax.xml.ws.Response;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -26,7 +28,7 @@ public class CoinParkService implements CoinExchangerHandler {
      * @return
      * @throws Exception
      */
-    public Map<String, String> getSymbolCoinPrice(OrderInfoBean orderInfoBean) throws Exception {
+    public ResponseBean<Map<String,String>> getSymbolCoinPrice(OrderInfoBean orderInfoBean) throws Exception {
         //{"result":[{"result":{"id":199,"coin_symbol":"BIX","currency_symbol":"BTC","last":"0.00016109","high":"0.00018504","low":"0.00016057","change":"-0.00001712","percent":"-9.61%","vol24H":"1665","amount":"0.29","last_cny":"6.48","high_cny":"7.44","low_cny":"6.45","last_usd":"0.98","high_usd":"1.13","low_usd":"0.98"},"cmd":"api/market"}]}
         if(StringUtils.isEmpty(orderInfoBean)){
             return null;
@@ -52,7 +54,7 @@ public class CoinParkService implements CoinExchangerHandler {
      * @return
      * @throws Exception
      */
-    public Map<String,String> getAllCoinPrice(OrderInfoBean orderInfoBean) throws Exception {
+    public ResponseBean<Map<String,String>> getAllCoinPrice(OrderInfoBean orderInfoBean) throws Exception {
         if(StringUtils.isEmpty(orderInfoBean)){
             return null;
         }
@@ -75,7 +77,7 @@ public class CoinParkService implements CoinExchangerHandler {
      * @return
      * @throws Exception
      */
-    public Map<String,String> getCoinDepth(OrderInfoBean orderInfoBean) throws Exception {
+    public ResponseBean<Map<String,String>> getCoinDepth(OrderInfoBean orderInfoBean) throws Exception {
         if(StringUtils.isEmpty(orderInfoBean)){
             return null;
         }
@@ -102,7 +104,7 @@ public class CoinParkService implements CoinExchangerHandler {
      * @return
      * @throws Exception
      */
-    public Map<String, String> getSymbolTicker(OrderInfoBean orderInfoBean) throws Exception {
+    public ResponseBean<Map<String,String>> getSymbolTicker(OrderInfoBean orderInfoBean) throws Exception {
         //{"result":[{"result":{"id":199,"coin_symbol":"BIX","currency_symbol":"BTC","last":"0.00016109","high":"0.00018504","low":"0.00016057","change":"-0.00001712","percent":"-9.61%","vol24H":"1665","amount":"0.29","last_cny":"6.48","high_cny":"7.44","low_cny":"6.45","last_usd":"0.98","high_usd":"1.13","low_usd":"0.98"},"cmd":"api/market"}]}
         if(StringUtils.isEmpty(orderInfoBean)){
             return null;
@@ -123,7 +125,7 @@ public class CoinParkService implements CoinExchangerHandler {
     }
 
 
-    public Map<String,String> returnMap(String url,JSONObject json) throws Exception {
+    public ResponseBean<Map<String,String>> returnMap(String url,JSONObject json) throws Exception {
         String response = HttpUtils2.postJson(url,json);
         System.out.println(response);
         Map<String,String> maps = new HashMap<String, String>();
@@ -131,7 +133,8 @@ public class CoinParkService implements CoinExchangerHandler {
         for(String key:respJson.keySet()){
             maps.put(key,respJson.getString(key));
         }
-        return  maps;
+        ResponseBean<Map<String,String>> responseBean = new ResponseBean<>();
+        return responseBean;
     }
 
 
@@ -144,7 +147,7 @@ public class CoinParkService implements CoinExchangerHandler {
      * @return
      * @throws Exception
      */
-    public Map<String, String> getTransferAssets(OrderInfoBean orderInfoBean) throws Exception {
+    public ResponseBean<Map<String,String>> getTransferAssets(OrderInfoBean orderInfoBean) throws Exception {
         if(StringUtils.isEmpty(orderInfoBean)){
             return null;
         }
@@ -173,7 +176,7 @@ public class CoinParkService implements CoinExchangerHandler {
      * @return
      * @throws Exception
      */
-    public Map<String, String> trade(OrderInfoBean orderInfoBean) throws Exception {
+    public ResponseBean<Map<String,String>> trade(OrderInfoBean orderInfoBean) throws Exception {
         if(StringUtils.isEmpty(orderInfoBean)){
             return null;
         }
@@ -210,7 +213,7 @@ public class CoinParkService implements CoinExchangerHandler {
      * @return
      * @throws Exception
      */
-    public Map<String, String> cancelTrade(OrderInfoBean orderInfoBean) throws Exception {
+    public ResponseBean<Map<String,String>> cancelTrade(OrderInfoBean orderInfoBean) throws Exception {
         if(StringUtils.isEmpty(orderInfoBean)){
             return null;
         }
@@ -238,7 +241,7 @@ public class CoinParkService implements CoinExchangerHandler {
      * @return
      * @throws Exception
      */
-    public Map<String, String> orderpending(OrderInfoBean orderInfoBean) throws Exception {
+    public ResponseBean<Map<String,String>> orderpending(OrderInfoBean orderInfoBean) throws Exception {
         if(StringUtils.isEmpty(orderInfoBean)){
             return null;
         }
@@ -272,7 +275,7 @@ public class CoinParkService implements CoinExchangerHandler {
      * @return
      * @throws Exception
      */
-    public Map<String, String> pendingHistoryList(OrderInfoBean orderInfoBean) throws Exception {
+    public ResponseBean<Map<String,String>> pendingHistoryList(OrderInfoBean orderInfoBean) throws Exception {
         if(StringUtils.isEmpty(orderInfoBean)){
             return null;
         }
@@ -302,10 +305,17 @@ public class CoinParkService implements CoinExchangerHandler {
     }
 
 
-//    public static void main(String[] args) throws Exception {
-//        OrderInfoBean orderInfoBean = new OrderInfoBean("24faa71aabc17ecfc684673a8071100f12a1b107","5b3af0219332758669cc32c6266285f41d390406","BIX_BTC","","1","","");
-//        CoinParkService coinParkService  = new CoinParkService();
-//
-//        coinParkService.getTransferAssets(orderInfoBean);
-//    }
+    public static void main(String[] args) throws Exception {
+        OrderInfoBean orderInfoBean = new OrderInfoBean("24faa71aabc17ecfc684673a8071100f12a1b107","5b3af0219332758669cc32c6266285f41d390406","BIX_BTC","","1",null,null);
+        CoinParkService coinParkService  = new CoinParkService();
+
+//       Map<String,String> maps = coinParkService.getTransferAssets(orderInfoBean);
+//       Map<String,String> maps = coinParkService.orderpending(orderInfoBean);
+//       Map<String,String> maps = coinParkService.pendingHistoryList(orderInfoBean);
+//        JSONArray jsonArray = JSONArray.parseArray(maps.get("result"));
+//        System.out.println(jsonArray.toString());
+//        JSONObject jsonObject = jsonArray.getJSONObject(0);
+//        System.out.println(jsonObject.toJSONString());
+
+    }
 }

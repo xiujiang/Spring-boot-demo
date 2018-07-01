@@ -9,12 +9,14 @@ import com.util.HttpUtils2;
 import com.util.SignUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.Map;
 
+@Service
 public class OkexService {
     String http = "https://www.okex.com/api/v1/future_trades.do";
     Logger logger = LoggerFactory.getLogger(getClass());

@@ -1,5 +1,7 @@
 package com.bean;
 
+import java.math.BigDecimal;
+
 /**
  * Created by joel on 2018/1/13.
  */
@@ -10,15 +12,21 @@ public class OrderInfoBean {
     private String secret;
     private String sign;
     private String buyOrSell;
-    private String amount;
-    private String price;
+    private BigDecimal amount;
+    private BigDecimal price;
     private String index;
+    private String coinExchange;
+    private String memberNo;
+
+    public OrderInfoBean() {
+
+    }
     public OrderInfoBean(String apiKey,String symbol,String orderId){
         this.apiKey = apiKey;
         this.symbol = symbol;
         this.orderId = orderId;
     }
-    public OrderInfoBean(String apiKey,String secret,String symbol,String orderId,String buyOrSell,String amount,String price){
+    public OrderInfoBean(String apiKey,String secret,String symbol,String orderId,String buyOrSell,BigDecimal amount,BigDecimal price){
         this.apiKey = apiKey;
         this.symbol = symbol;
         this.orderId = orderId;
@@ -75,19 +83,19 @@ public class OrderInfoBean {
         this.buyOrSell = buyOrSell;
     }
 
-    public String getAmount() {
+    public BigDecimal getAmount() {
         return amount;
     }
 
-    public void setAmount(String amount) {
+    public void setAmount(BigDecimal amount) {
         this.amount = amount;
     }
 
-    public String getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
-    public void setPrice(String price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
 
@@ -99,6 +107,22 @@ public class OrderInfoBean {
         this.index = index;
     }
 
+    public String getCoinExchange() {
+        return coinExchange;
+    }
+
+    public void setCoinExchange(String coinExchange) {
+        this.coinExchange = coinExchange;
+    }
+
+    public String getMemberNo() {
+        return memberNo;
+    }
+
+    public void setMemberNo(String memberNo) {
+        this.memberNo = memberNo;
+    }
+
     @Override
     public String toString() {
         return "OrderInfoBean{" +
@@ -108,9 +132,10 @@ public class OrderInfoBean {
                 ", secret='" + secret + '\'' +
                 ", sign='" + sign + '\'' +
                 ", buyOrSell='" + buyOrSell + '\'' +
-                ", amount='" + amount + '\'' +
-                ", price='" + price + '\'' +
+                ", amount=" + amount +
+                ", price=" + price +
                 ", index='" + index + '\'' +
+                ", coinExchange='" + coinExchange + '\'' +
                 '}';
     }
 }

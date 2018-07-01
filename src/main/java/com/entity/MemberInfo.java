@@ -16,12 +16,14 @@ public class MemberInfo {
     @Id
     private int id;
     private String merNo;
-    private String coinExchange;        //交易所
+    private String coinExchanger;        //交易所
     private String appKey;              //appKey
+    private String secret;      // 秘钥
     private String status;
     private String type;
     private Date createTime;
     private Date lastUpdateTime;
+
     @Column(name="id")
     public int getId() {
         return id;
@@ -38,13 +40,14 @@ public class MemberInfo {
     public void setMerNo(String merNo) {
         this.merNo = merNo;
     }
-    @Column(name="coin_exchange")
-    public String getCoinExchange() {
-        return coinExchange;
+
+    @Column(name="coin_exchanger")
+    public String getCoinExchanger() {
+        return coinExchanger;
     }
 
-    public void setCoinExchange(String coinExchange) {
-        this.coinExchange = coinExchange;
+    public void setCoinExchanger(String coinExchanger) {
+        this.coinExchanger = coinExchanger;
     }
 
     @Column(name="app_key")
@@ -87,14 +90,22 @@ public class MemberInfo {
     public void setLastUpdateTime(Date lastUpdateTime) {
         this.lastUpdateTime = lastUpdateTime;
     }
+    @Column(name="secret")
+    public String getSecret() {
+        return secret;
+    }
 
+    public void setSecret(String secret) {
+        this.secret = secret;
+    }
     @Override
     public String toString() {
         return "MemberInfo{" +
                 "id=" + id +
                 ", merNo='" + merNo + '\'' +
-                ", coinExchange='" + coinExchange + '\'' +
+                ", coinExchange='" + coinExchanger + '\'' +
                 ", appKey='" + appKey + '\'' +
+                ", secret='" + secret + '\'' +
                 ", status='" + status + '\'' +
                 ", type='" + type + '\'' +
                 ", createTime=" + createTime +

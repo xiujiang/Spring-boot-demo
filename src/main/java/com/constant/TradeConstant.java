@@ -14,10 +14,8 @@ public class TradeConstant {
 
     public static String transSymbol = "iost_usdt,lrc_usdt";
 
+    public final static String ORDER_STATUS_NO_DEAL = "NO_DEAL";           //未成交
+    public final static String ORDER_STATUS_SETTLE = "SETTLE";              //已成交
 
-
-    //coinParkConstant
-    public static String coinParkApi = "";
-    public static String coinParkSymbol = "";
 
 }

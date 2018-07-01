@@ -19,4 +19,10 @@ public interface OrderDao  extends JpaRepository<Order, Long> {
     @Query(value="select * from order_s where status = ?1 and type = ?2 order by create_time desc",nativeQuery = true)
     List<Order> findByStatusAndType(String status,String type);
 
+    @Query(value="select * from order_s where mer_no = ?1 and coin_exchanger=?2 and status = ?3",nativeQuery = true)
+    List<Order> findByMerNoAndCoinExchangeAndStatus(String merNo,String CoinExchange,String status);
+
+    @Query(value="select * from order_s where mer_no = ?1 and coin_exchanger = ?2 and type = ?3 order by create_time desc",nativeQuery = true)
+    List<Order> findByMerNoAndCoinExchangeAndType(String merNo,String coinExchanger,String type);
+
 }

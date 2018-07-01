@@ -24,6 +24,7 @@ public class Order{
     private String amount;
     private String status;
     private String total;
+    private String coinExchanger;
   	private Date createTime;
   	private Date lastUpdateTime;
 
@@ -108,12 +109,21 @@ public class Order{
         this.lastUpdateTime = lastUpdateTime;
     }
 
+    @Column(name="mer_no")
     public String getMerNo() {
         return merNo;
     }
 
     public void setMerNo(String merNo) {
         this.merNo = merNo;
+    }
+    @Column(name="coin_exchanger")
+    public String getCoinExchanger() {
+        return coinExchanger;
+    }
+
+    public void setCoinExchanger(String coinExchanger) {
+        this.coinExchanger = coinExchanger;
     }
 
     @Override
@@ -128,6 +138,7 @@ public class Order{
                 ", amount='" + amount + '\'' +
                 ", status='" + status + '\'' +
                 ", total='" + total + '\'' +
+                ", coinExchanger='" + coinExchanger + '\'' +
                 ", createTime=" + createTime +
                 ", lastUpdateTime=" + lastUpdateTime +
                 '}';

@@ -9,7 +9,7 @@ import javax.annotation.Resource;
 /**
  * Created by joel on 2018/4/16.
  */
-@Component
+//@Component
 public class FxhPriceTask extends AbstractTask{
     @Resource
     FxhCoinInfoService fxhCoinInfoService;
