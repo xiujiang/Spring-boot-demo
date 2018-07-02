@@ -47,10 +47,10 @@ public class BuyOrSellTask  extends AbstractTask {
     @Scheduled(cron="0/2 * * * * ? ")
     @Override
     public void execute() throws Exception {
-//        logger.info("挖矿开始。。。。。。。");
+//        System.out.println("挖矿开始。。。。。。。");
         System.out.println("挖矿开始");
         //先判断是否可以进行挖矿
-
+        System.out.println();
         boolean b = true;
         if (!b) {
             return;
@@ -60,18 +60,20 @@ public class BuyOrSellTask  extends AbstractTask {
         if (tradeInfoBeanHashMap.isEmpty()) {
             return;
         }
-        logger.info("当前会员在线个数为:{}",tradeInfoBeanHashMap.size());
+        System.out.println("当前会员在线个数为:{}"+tradeInfoBeanHashMap.size());
         for (String memberNo : tradeInfoBeanHashMap.keySet()) {
             TradeInfoBean tradeInfoBean = tradeInfoBeanHashMap.get(memberNo);
             //用户交易信息
             UserTradeInfoBean userTradeInfoBean = userTradeInfoBeanMap.get(memberNo);
             //用户订单信息
             OrderInfoBean orderInfoBean = getOrderInfoBean(tradeInfoBean, userTradeInfoBean);
-            logger.info("会员交易：{}",orderInfoBean);
+            System.out.println("会员交易：{}"+orderInfoBean);
             //检查是否有订单
             Map<String, String> checkPaddingOrder = checkCoinOrder(orderInfoBean);
-            logger.info("查询订单结束{}",checkPaddingOrder);
+            System.out.println("查询订单结束{}"+checkPaddingOrder);
             if (!ResponseBean.SUCCESS.equals(checkPaddingOrder.get("code"))) {
+                System.out.println(checkPaddingOrder.get("msg"));
+                tradeInfoBeanHashMap.remove(memberNo);
                 continue;
             }
             //刷单交易
@@ -83,13 +85,13 @@ public class BuyOrSellTask  extends AbstractTask {
                 if (userTradeInfoBean.getTimes().equals(userTradeInfoBean.getNowTimes())) {
                     tradeInfoBeanHashMap.remove(memberNo);
                     userTradeInfoBeanMap.remove(memberNo);
-                    logger.info("会员:{}交易次数达到上线，关闭交易", memberNo);
+                    System.out.println("会员:{}交易次数达到上线，关闭交易"+ memberNo);
                     continue;
                 }
                 if (userTradeInfoBean.getAccount().compareTo(userTradeInfoBean.getNowAccount()) == 0) {
                     tradeInfoBeanHashMap.remove(memberNo);
                     userTradeInfoBeanMap.remove(memberNo);
-                    logger.info("会员:{}交易金额达到上线，关闭交易", memberNo);
+                    System.out.println("会员:{}交易金额达到上线，关闭交易"+memberNo);
                     continue;
                 }
             }
@@ -113,8 +115,8 @@ public class BuyOrSellTask  extends AbstractTask {
             maps.put("msg", "该会员没有权限");
             return maps;
         }
-        orderPendingBean.setApiKey(memberInfo.getAppKey());
-        orderPendingBean.setSecret(memberInfo.getSecret());
+        orderPendingBean.setApiKey(orderInfoBean.getApiKey());
+        orderPendingBean.setSecret(orderInfoBean.getSecret());
         orderPendingBean.setSymbol(orderInfoBean.getSymbol());
         ResponseBean<Map<String, String>> suerOrders = handler.orderpending(orderPendingBean);
         if (!ResponseBean.SUCCESS.equals(suerOrders.getCode())) {
@@ -191,25 +193,50 @@ public class BuyOrSellTask  extends AbstractTask {
         String coinSymbol = orderInfoBean.getSymbol().split("_")[0];
         String currencySymbol = orderInfoBean.getSymbol().split("_")[1];
         ResponseBean<Map<String, String>> responseBean = handler.getTransferAssets(orderInfoBean);
+        System.out.println("当前用户余额为:"+responseBean);
         if (!ResponseBean.SUCCESS.equals(responseBean.getCode())) {
             maps.put("code", ResponseBean.FAIL_98);
             maps.put("msg", "余额查询失败");
             return maps;
         }
         Map<String, String> respMap = responseBean.getData();
-        String userAccount = respMap.get(orderInfoBean.getSymbol().split("_")[0]);
-        if (StringUtils.isEmpty(userAccount)) {
-            maps.put("code", ResponseBean.FAIL_98);
-            maps.put("msg", "余额信息为空");
-            return maps;
-        } else {
-            BigDecimal amount = orderInfoBean.getAmount().multiply(orderInfoBean.getPrice());
-            if (amount.compareTo(new BigDecimal(userAccount)) < 0) {
+
+        //用户余额
+        String startUserAccount = respMap.get(orderInfoBean.getSymbol().split("_")[0]);
+        String endUserAccount = respMap.get(orderInfoBean.getSymbol().split("_")[0]);
+        BigDecimal amount = orderInfoBean.getAmount().multiply(orderInfoBean.getPrice());
+        if("1".equals(orderInfoBean.getBuyOrSell())){
+            //买保证endUserAccount充足
+            System.out.println("当前用户余额为:"+endUserAccount);
+            if (StringUtils.isEmpty(endUserAccount)) {
                 maps.put("code", ResponseBean.FAIL_98);
-                maps.put("msg", "用户当前余额不足，无法交易");
+                maps.put("msg", "余额信息为空");
                 return maps;
+            } else {
+                //当前交易金额
+                if (amount.compareTo(new BigDecimal(endUserAccount)) > 0) {
+                    maps.put("code", ResponseBean.FAIL_98);
+                    maps.put("msg", "用户当前余额不足，无法交易");
+                    return maps;
+                }
+            }
+        }else{
+            //卖保证startuserAccount充足
+            System.out.println("当前用户余额为:"+startUserAccount);
+            if (StringUtils.isEmpty(startUserAccount)) {
+                maps.put("code", ResponseBean.FAIL_98);
+                maps.put("msg", "余额信息为空");
+                return maps;
+            } else {
+                //当前交易金额
+                if (amount.compareTo(new BigDecimal(startUserAccount)) > 0) {
+                    maps.put("code", ResponseBean.FAIL_98);
+                    maps.put("msg", "用户当前余额不足，无法交易");
+                    return maps;
+                }
             }
         }
+
         maps.put("code", ResponseBean.SUCCESS);
         return maps;
     }

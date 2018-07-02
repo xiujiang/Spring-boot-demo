@@ -92,6 +92,7 @@ public class AaCoinService implements CoinExchangerHandler {
         responseMap.put("vol", arr0.getString("vol"));
         responseMap.put("sell", arr0.getString("sell"));
         responseMap.put("buy", arr0.getString("buy"));
+        System.out.println("查询结束，币种信息为:"+responseMap);
         return new ResponseBean<>(ResponseBean.SUCCESS,"",responseMap);
 
     }
@@ -132,7 +133,15 @@ public class AaCoinService implements CoinExchangerHandler {
         //对参数进行排序
         params.sort((o1, o2) -> o1.getName().compareToIgnoreCase(o2.getName()));
         List<String> paramStringList = params.stream().map(e -> e.getName() + "=" + e.getValue()).collect(Collectors.toList());
-        String paramString = StringUtils.join(paramStringList, "&");
+
+        String paramString = "";
+        StringBuffer var2 = new StringBuffer();
+        for(String param:paramStringList){
+            var2.append(param);
+            var2.append("&");
+        }
+        paramString = var2.substring(0,var2.length()-1);
+//        String paramString = StringUtils.join(paramStringList, "&");
         //进行签名
         String actualSignature = HmacSHAUtils.encodeHmacSHA256(paramString, orderInfoBean.getSecret());
         params.add(new BasicNameValuePair("sign", actualSignature));
@@ -171,7 +180,7 @@ public class AaCoinService implements CoinExchangerHandler {
                 returnMaps.put(symbolJson.getString("currencyCode"),accountJson.getString("balance"));
             }
         }
-
+        System.out.println("查询结束，用户资产为:"+returnMaps);
         return new ResponseBean<>(ResponseBean.SUCCESS,"",returnMaps);
     }
 
@@ -201,7 +210,14 @@ public class AaCoinService implements CoinExchangerHandler {
 
         Map<String,String> returnMap = new HashMap<>();
         List<String> paramStringList = params.stream().map(e -> e.getName() + "=" + e.getValue()).collect(Collectors.toList());
-        String paramString = StringUtils.join(paramStringList, "&");
+        String paramString = "";
+        StringBuffer var2 = new StringBuffer();
+        for(String param:paramStringList){
+            var2.append(param);
+            var2.append("&");
+        }
+        paramString = var2.substring(0,var2.length()-1);
+//        String paramString = StringUtils.join(paramStringList, "&");
         String actualSignature = HmacSHAUtils.encodeHmacSHA256(paramString, orderInfoBean.getSecret());
         params.add(new BasicNameValuePair("sign", actualSignature));
 
@@ -219,6 +235,7 @@ public class AaCoinService implements CoinExchangerHandler {
         JSONObject jsonObject = JSONObject.parseObject(responseStr);
         if("1000".equals(jsonObject.getString("status"))){
             returnMap.put("orderId",jsonObject.getString("data"));
+            System.out.println("交易结束，交易内容为:"+orderInfoBean);
             return new ResponseBean<>(ResponseBean.SUCCESS,"",returnMap);
         }else{
             return new ResponseBean<>(ResponseBean.FAIL_98,"",returnMap);
@@ -238,7 +255,14 @@ public class AaCoinService implements CoinExchangerHandler {
         //对参数进行排序
         params.sort((o1, o2) -> o1.getName().compareToIgnoreCase(o2.getName()));
         List<String> paramStringList = params.stream().map(e -> e.getName() + "=" + e.getValue()).collect(Collectors.toList());
-        String paramString = StringUtils.join(paramStringList, "&");
+        String paramString = "";
+        StringBuffer var2 = new StringBuffer();
+        for(String param:paramStringList){
+            var2.append(param);
+            var2.append("&");
+        }
+        paramString = var2.substring(0,var2.length()-1);
+//        String paramString = StringUtils.join(paramStringList, "&");
         String actualSignature = HmacSHAUtils.encodeHmacSHA256(paramString, orderInfoBean.getSecret());
         params.add(new BasicNameValuePair("sign", actualSignature));
 
@@ -279,7 +303,14 @@ public class AaCoinService implements CoinExchangerHandler {
         params.sort((o1, o2) -> o1.getName().compareToIgnoreCase(o2.getName()));
 
         List<String> paramStringList = params.stream().map(e -> e.getName() + "=" + e.getValue()).collect(Collectors.toList());
-        String paramString = StringUtils.join(paramStringList, "&");
+        String paramString = "";
+        StringBuffer var2 = new StringBuffer();
+        for(String param:paramStringList){
+            var2.append(param);
+            var2.append("&");
+        }
+        paramString = var2.substring(0,var2.length()-1);
+//        String paramString = StringUtils.join(paramStringList, "&");
         String actualSignature = HmacSHAUtils.encodeHmacSHA256(paramString, orderInfoBean.getSecret());
         params.add(new BasicNameValuePair("sign", actualSignature));
 
@@ -317,7 +348,7 @@ public class AaCoinService implements CoinExchangerHandler {
                 }
             }
         }
-
+        System.out.println("委托单查询结束:"+returnMap);
         return  new ResponseBean<Map<String,String>>(ResponseBean.SUCCESS,"",returnMap);
     }
 
@@ -341,7 +372,14 @@ public class AaCoinService implements CoinExchangerHandler {
 
 
         List<String> paramStringList = params.stream().map(e -> e.getName() + "=" + e.getValue()).collect(Collectors.toList());
-        String paramString = StringUtils.join(paramStringList, "&");
+        String paramString = "";
+        StringBuffer var2 = new StringBuffer();
+        for(String param:paramStringList){
+            var2.append(param);
+            var2.append("&");
+        }
+        paramString = var2.substring(0,var2.length()-1);
+//        String paramString = StringUtils.join(paramStringList, "&");
         String actualSignature = HmacSHAUtils.encodeHmacSHA256(paramString, secretKey);
         params.add(new BasicNameValuePair("sign", actualSignature));
 
