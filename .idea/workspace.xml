@@ -7,27 +7,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0eb491fd-aef4-443c-8171-cad692aeef04" name="Default" comment="新增定时和log4j">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_github_jnr_jffi_1_2_14.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_github_jnr_jffi_native_1_2_14.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_github_jnr_jnr_constants_0_9_6.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_github_jnr_jnr_enxio_0_14.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_github_jnr_jnr_ffi_2_1_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_github_jnr_jnr_posix_3_0_33.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_github_jnr_jnr_unixsocket_0_15.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_github_jnr_jnr_x86asm_1_0_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_lambdaworks_scrypt_1_4_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_squareup_javapoet_1_7_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__io_reactivex_rxjava_1_2_4.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_bouncycastle_bcprov_jdk15on_1_54.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_ow2_asm_asm_5_0_3.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_ow2_asm_asm_analysis_5_0_3.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_ow2_asm_asm_commons_5_0_3.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_ow2_asm_asm_tree_5_0_3.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_ow2_asm_asm_util_5_0_3.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_web3j_core_2_2_1.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/service/AaCoinService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/service/AaCoinService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/task/BuyOrSellTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/task/BuyOrSellTask.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/service/CoinParkService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/service/CoinParkService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/service/TradeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/service/TradeService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/Application.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/Application.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/Example.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/Example.class" afterDir="false" />
@@ -68,30 +50,29 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="AaCoinService.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/service/AaCoinService.java">
+      <file leaf-file-name="CoinParkService.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/service/CoinParkService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-23">
-              <caret line="407" column="40" lean-forward="true" selection-start-line="407" selection-start-column="40" selection-end-line="407" selection-end-column="40" />
+            <state relative-caret-position="98">
+              <caret line="321" column="94" lean-forward="true" selection-start-line="321" selection-start-column="94" selection-end-line="321" selection-end-column="94" />
               <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="method#getCoinDepth#0;class#AaCoinService#0" />
-                <element signature="method#getSymbolTicker#0;class#AaCoinService#0" />
-                <element signature="method#cancelTrade#0;class#AaCoinService#0" />
-                <element signature="method#pendingHistoryList#0;class#AaCoinService#0" />
+                <element signature="method#getSymbolCoinPrice#0;class#CoinParkService#0" />
+                <element signature="method#getAllCoinPrice#0;class#CoinParkService#0" />
+                <element signature="method#getCoinDepth#0;class#CoinParkService#0" />
+                <element signature="method#getSymbolTicker#0;class#CoinParkService#0" />
+                <element signature="method#cancelTrade#0;class#CoinParkService#0" />
+                <element signature="method#orderpending#0;class#CoinParkService#0" />
+                <element signature="method#pendingHistoryList#0;class#CoinParkService#0" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BuyOrSellTask.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/task/BuyOrSellTask.java">
+      <file leaf-file-name="TradeService.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/service/TradeService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="189" column="10" lean-forward="true" selection-start-line="189" selection-start-column="10" selection-end-line="189" selection-end-column="10" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="418">
+              <caret line="39" column="64" lean-forward="true" selection-start-line="39" selection-start-column="64" selection-end-line="39" selection-end-column="64" />
             </state>
           </provider>
         </entry>
@@ -170,9 +151,7 @@
         <option value="$PROJECT_DIR$/src/main/java/com/util/HmacSHAUtils.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/bean/OrderResponseBean.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/handler/CoinExchangerHandler.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/service/CoinParkService.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/bean/ResponseBean.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/service/TradeService.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/constant/TradeConstant.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/dao/OrderDao.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/bean/TradeInfoBean.java" />
@@ -194,6 +173,8 @@
         <option value="$PROJECT_DIR$/src/main/java/com/dao/MemberInfoDao.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/service/AaCoinService.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/task/BuyOrSellTask.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/service/CoinParkService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/service/TradeService.java" />
       </list>
     </option>
   </component>
@@ -257,8 +238,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="AndroidView" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -292,20 +271,13 @@
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="com" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="SpringBootProj" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Spring-boot-demo" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="service" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
       <pane id="PackagesPane" />
+      <pane id="AndroidView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -344,7 +316,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Tomcat Server.tomcatServer">
+  <component name="RunManager" selected="Application.CoinParkService">
     <configuration default="true" type="Applet" factoryName="Applet">
       <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
     </configuration>
@@ -709,8 +681,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.AaCoinService" />
         <item itemvalue="Application.CoinParkService" />
+        <item itemvalue="Application.AaCoinService" />
         <item itemvalue="Application.FxhCoinInfoService" />
         <item itemvalue="Application.TradeService" />
         <item itemvalue="Maven.SpringBootProj [install]" />
@@ -760,6 +732,8 @@
       <workItem from="1530193414984" duration="3136000" />
       <workItem from="1530335802945" duration="40735000" />
       <workItem from="1530539892747" duration="5228000" />
+      <workItem from="1530574417690" duration="241000" />
+      <workItem from="1530708334446" duration="5810000" />
     </task>
     <task id="LOCAL-00001" summary="新增定时和log4j">
       <created>1515767295484</created>
@@ -782,7 +756,14 @@
       <option name="project" value="LOCAL" />
       <updated>1530463842098</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="挖矿修复">
+      <created>1530574545455</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1530574545455</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -794,7 +775,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="306536000" />
+    <option name="totallyTimeSpent" value="312587000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -807,10 +788,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="10" />
-      <window_info anchor="bottom" id="Event Log" order="6" sideWeight="0.18869936" side_tool="true" weight="0.5779221" />
+      <window_info anchor="bottom" id="Event Log" order="6" sideWeight="0.19029851" side_tool="true" visible="true" weight="0.25865802" />
       <window_info anchor="bottom" id="Application Servers" order="12" sideWeight="0.49394855" weight="0.36535162" />
       <window_info anchor="right" id="Maven Projects" order="19" visible="true" weight="0.141258" />
       <window_info anchor="bottom" id="Database Changes" order="14" />
@@ -820,28 +800,28 @@
       <window_info id="Structure" order="1" side_tool="true" weight="0.24962178" />
       <window_info anchor="right" id="Ant Build" order="2" sideWeight="0.48918918" weight="0.10741301" />
       <window_info id="UI Designer" order="4" />
-      <window_info anchor="bottom" id="Debug" order="2" sideWeight="0.49394855" weight="0.39794168" />
+      <window_info anchor="bottom" id="Debug" order="2" sideWeight="0.4936034" weight="0.39718616" />
       <window_info anchor="bottom" id="TODO" order="5" sideWeight="0.4939302" weight="0.32761577" />
-      <window_info anchor="bottom" id="Messages" order="7" sideWeight="0.5954158" weight="0.29112554" />
+      <window_info anchor="bottom" id="Messages" order="7" sideWeight="0.5948827" weight="0.29112554" />
       <window_info anchor="right" id="Palette&#9;" order="13" />
       <window_info id="Image Layers" order="5" />
       <window_info anchor="bottom" id="Java Enterprise" order="13" weight="0.32933104" />
       <window_info anchor="right" id="Capture Analysis" order="14" />
-      <window_info active="true" anchor="bottom" x="3" y="3" width="1360" height="722" id="Run" order="15" sideWeight="0.81130064" visible="true" weight="0.5822511" />
       <window_info anchor="bottom" id="Version Control" order="8" sideWeight="0.60152674" weight="0.32946146" />
+      <window_info anchor="bottom" x="3" y="3" width="1360" height="722" id="Run" order="15" sideWeight="0.8097015" visible="true" weight="0.25865802" />
       <window_info anchor="bottom" id="Spring" order="9" sideWeight="0.4969743" weight="0.32761577" />
       <window_info anchor="bottom" id="Terminal" order="10" sideWeight="0.4969743" weight="0.32761577" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.28198293" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.28837952" />
       <window_info anchor="right" id="Bean Validation" order="15" weight="0.32928678" />
       <window_info id="Web" order="8" side_tool="true" />
       <window_info anchor="right" id="Theme Preview" order="16" />
       <window_info id="Favorites" order="6" side_tool="true" />
+      <window_info anchor="right" id="Properties" order="11" />
       <window_info id="Nl-Palette" order="2" />
       <window_info anchor="right" id="Coverage" order="17" sideWeight="0.5108108" side_tool="true" weight="0.10698027" />
       <window_info anchor="bottom" id="Inspection" order="4" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="3" weight="0.25" />
       <window_info anchor="bottom" id="Database Console" order="11" weight="0.20547946" />
-      <window_info anchor="right" id="Properties" order="11" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="3" weight="0.25" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32761577" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
@@ -875,11 +855,12 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="新增定时和log4j" />
     <MESSAGE value="刷单挖矿" />
-    <option name="LAST_COMMIT_MESSAGE" value="刷单挖矿" />
+    <MESSAGE value="挖矿修复" />
+    <option name="LAST_COMMIT_MESSAGE" value="挖矿修复" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="20" />
+      <option name="time" value="30" />
     </breakpoint-manager>
   </component>
   <component name="antWorkspaceConfiguration">
@@ -887,20 +868,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/service/MemberService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="114">
-          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/constant/CoinExchangerConstant.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="15" column="20" selection-start-line="15" selection-start-column="20" selection-end-line="15" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/entity/AccountInfo.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="38">
@@ -955,13 +922,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/bean/OrderResponseBean.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/service/CoinParkService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="143">
-          <caret line="307" column="61" lean-forward="true" selection-start-line="307" selection-start-column="61" selection-end-line="307" selection-end-column="61" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/com/alibaba/fastjson/1.1.33/fastjson-1.1.33.jar!/com/alibaba/fastjson/JSONArray.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1621">
@@ -1027,13 +987,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_171/jre/lib/rt.jar!/java/util/Map.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="182">
-          <caret line="21" column="6" selection-start-line="21" selection-start-column="6" selection-end-line="21" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/bean/TradeInfoBean.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="174">
@@ -1085,19 +1038,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="323">
           <caret line="36" column="9" lean-forward="true" selection-start-line="36" selection-start-column="9" selection-end-line="36" selection-end-column="9" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/service/TradeService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="326">
-          <caret line="40" lean-forward="true" selection-start-line="40" selection-end-line="40" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1154,9 +1094,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="95">
           <caret line="5" column="3" lean-forward="true" selection-start-line="5" selection-start-column="3" selection-end-line="5" selection-end-column="3" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1248,10 +1185,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="192">
           <caret line="62" column="25" selection-start-line="62" selection-start-column="25" selection-end-line="62" selection-end-column="25" />
-          <folding>
-            <element signature="e#1929#1930#0" expanded="true" />
-            <element signature="e#1979#1980#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1259,9 +1192,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="437">
           <caret line="26" column="29" selection-start-line="26" selection-start-column="29" selection-end-line="26" selection-end-column="29" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1272,10 +1202,27 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/entity/MemberInfo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="228">
+          <caret line="53" column="18" selection-start-line="53" selection-start-column="18" selection-end-line="53" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/task/BuyOrSellTask.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="189" column="10" selection-start-line="189" selection-start-column="10" selection-end-line="189" selection-end-column="10" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/service/AaCoinService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-23">
-          <caret line="407" column="40" lean-forward="true" selection-start-line="407" selection-start-column="40" selection-end-line="407" selection-end-column="40" />
+        <state relative-caret-position="833">
+          <caret line="407" column="40" selection-start-line="407" selection-start-column="40" selection-end-line="407" selection-end-column="40" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#getCoinDepth#0;class#AaCoinService#0" />
@@ -1286,24 +1233,47 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/entity/MemberInfo.java">
+    <entry file="jar://$MAVEN_REPOSITORY$/com/alibaba/fastjson/1.1.33/fastjson-1.1.33.jar!/com/alibaba/fastjson/parser/DefaultJSONParser.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="228">
-          <caret line="53" column="18" selection-start-line="53" selection-start-column="18" selection-end-line="53" selection-end-column="18" />
+        <state relative-caret-position="218">
+          <caret line="193" selection-start-line="193" selection-end-line="193" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/com/alibaba/fastjson/1.1.33/fastjson-1.1.33.jar!/com/alibaba/fastjson/JSON.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="218">
+          <caret line="60" selection-start-line="60" selection-end-line="60" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_171/jre/lib/rt.jar!/java/util/Map.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="182">
+          <caret line="21" column="6" selection-start-line="21" selection-start-column="6" selection-end-line="21" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/service/CoinParkService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="98">
+          <caret line="321" column="94" lean-forward="true" selection-start-line="321" selection-start-column="94" selection-end-line="321" selection-end-column="94" />
           <folding>
-            <element signature="e#1166#1167#0" expanded="true" />
-            <element signature="e#1195#1196#0" expanded="true" />
+            <element signature="method#getSymbolCoinPrice#0;class#CoinParkService#0" />
+            <element signature="method#getAllCoinPrice#0;class#CoinParkService#0" />
+            <element signature="method#getCoinDepth#0;class#CoinParkService#0" />
+            <element signature="method#getSymbolTicker#0;class#CoinParkService#0" />
+            <element signature="method#cancelTrade#0;class#CoinParkService#0" />
+            <element signature="method#orderpending#0;class#CoinParkService#0" />
+            <element signature="method#pendingHistoryList#0;class#CoinParkService#0" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/task/BuyOrSellTask.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/service/TradeService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="189" column="10" lean-forward="true" selection-start-line="189" selection-start-column="10" selection-end-line="189" selection-end-column="10" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="418">
+          <caret line="39" column="64" lean-forward="true" selection-start-line="39" selection-start-column="64" selection-end-line="39" selection-end-column="64" />
         </state>
       </provider>
     </entry>

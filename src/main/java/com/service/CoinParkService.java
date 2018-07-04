@@ -11,6 +11,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 import javax.xml.ws.Response;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -134,6 +136,8 @@ public class CoinParkService implements CoinExchangerHandler {
             maps.put(key,respJson.getString(key));
         }
         ResponseBean<Map<String,String>> responseBean = new ResponseBean<>();
+        maps.put("aaa",response);
+        responseBean.setData(maps);
         return responseBean;
     }
 
@@ -184,11 +188,11 @@ public class CoinParkService implements CoinExchangerHandler {
         JSONObject cmds = new JSONObject();
         JSONObject body = new JSONObject();
         cmds.put("cmd","orderpending/trade");
-        cmds.put("index",orderInfoBean.getOrderId());
+        cmds.put("index",orderInfoBean.getIndex());
         body.put("pair",orderInfoBean.getSymbol());
         body.put("account_type","0");
         body.put("order_type","2");
-        if("sell".equals(orderInfoBean)){
+        if("2".equals(orderInfoBean)){
             body.put("order_side","2");
         }else{
             body.put("order_side","1");
@@ -199,11 +203,11 @@ public class CoinParkService implements CoinExchangerHandler {
         JSONArray jsarray = new JSONArray();
         jsarray.add(cmds);
         json.put("cmds",jsarray.toString());
-        String sign = SignUtils.coinParkSign(json.getString("cmds"),orderInfoBean.getSecret());
         json.put("apikey",orderInfoBean.getApiKey());
+        String sign = SignUtils.coinParkSign(json.getString("cmds"),orderInfoBean.getSecret());
         json.put("sign",sign);
         System.out.println(json.toJSONString());
-        return returnMap(tradeURL,json);
+        return returnMap("https://api.coinpark.cc/v1/orderpending",json);
     }
 
 
@@ -221,17 +225,17 @@ public class CoinParkService implements CoinExchangerHandler {
         JSONObject cmds = new JSONObject();
         JSONObject body = new JSONObject();
         cmds.put("cmd","orderpending/cancelTrade");
-        cmds.put("index",orderInfoBean.getOrderId());
-        body.put("orders_id",orderInfoBean.getIndex());
+        cmds.put("index",orderInfoBean.getIndex());
+        body.put("orders_id",orderInfoBean.getOrderId());
         cmds.put("body",body);
         JSONArray jsarray = new JSONArray();
         jsarray.add(cmds);
         json.put("cmds",jsarray.toString());
-        String sign = SignUtils.coinParkSign(json.getString("cmds"),orderInfoBean.getSecret());
         json.put("apikey",orderInfoBean.getApiKey());
+        String sign = SignUtils.coinParkSign(json.getString("cmds"),orderInfoBean.getSecret());
         json.put("sign",sign);
         System.out.println(json.toJSONString());
-        return returnMap(tradeURL,json);
+        return returnMap("https://api.coinpark.cc/v1/orderpending",json);
     }
 
 
@@ -249,24 +253,24 @@ public class CoinParkService implements CoinExchangerHandler {
         JSONObject cmds = new JSONObject();
         JSONObject body = new JSONObject();
         cmds.put("cmd","orderpending/orderPendingList");
-        cmds.put("index",orderInfoBean.getOrderId());
-        body.put("pair",orderInfoBean.getSymbol());
-        body.put("account_type","0");
+//        cmds.put("index",orderInfoBean.getOrderId());
+//        body.put("pair",orderInfoBean.getSymbol());
+//        body.put("account_type","0");
         body.put("page","1");
-        body.put("size",orderInfoBean.getSymbol());
-        String[] symbol = orderInfoBean.getSymbol().split("_");
-        body.put("coin_symbol",symbol[0]);
-        body.put("currency_symbol",symbol[1]);
-        body.put("order_side",orderInfoBean.getBuyOrSell());
+        body.put("size","10");
+//        String[] symbol = orderInfoBean.getSymbol().split("_");
+//        body.put("coin_symbol",symbol[0]);
+//        body.put("currency_symbol",symbol[1]);
+//        body.put("order_side",orderInfoBean.getBuyOrSell());
         cmds.put("body",body);
         JSONArray jsarray = new JSONArray();
         jsarray.add(cmds);
         json.put("cmds",jsarray.toString());
-        String sign = SignUtils.coinParkSign(json.getString("cmds"),orderInfoBean.getSecret());
         json.put("apikey",orderInfoBean.getApiKey());
+        String sign = SignUtils.coinParkSign(json.getString("cmds"),orderInfoBean.getSecret());
         json.put("sign",sign);
         System.out.println(json.toJSONString());
-        return returnMap(tradeURL,json);
+        return returnMap("https://api.coinpark.cc/v1/orderpending",json);
     }
 
     /**
@@ -308,14 +312,57 @@ public class CoinParkService implements CoinExchangerHandler {
     public static void main(String[] args) throws Exception {
         OrderInfoBean orderInfoBean = new OrderInfoBean("24faa71aabc17ecfc684673a8071100f12a1b107","5b3af0219332758669cc32c6266285f41d390406","BIX_BTC","","1",null,null);
         CoinParkService coinParkService  = new CoinParkService();
-
-//       Map<String,String> maps = coinParkService.getTransferAssets(orderInfoBean);
-//       Map<String,String> maps = coinParkService.orderpending(orderInfoBean);
+        orderInfoBean.setSymbol("CP_USDT");
+        orderInfoBean.setPrice(new BigDecimal(0.35).setScale(4,RoundingMode.HALF_DOWN));
+        orderInfoBean.setAmount(new BigDecimal(104).setScale(4,RoundingMode.HALF_DOWN));
+//        orderInfoBean.setOrderId("12961283");
+        orderInfoBean.setBuyOrSell("1");
+        orderInfoBean.setIndex(System.currentTimeMillis()+"1");
+//        ResponseBean<Map<String,String>> maps = coinParkService.trade(orderInfoBean);
+        //{"result":[{"result":12978028,"cmd":"orderpending/trade","index":"15307113558271"}]}
+//        ResponseBean<Map<String,String>> maps = coinParkService.cancelTrade(orderInfoBean);
+//        ResponseBean<Map<String,String>> maps = coinParkService.getTransferAssets(orderInfoBean);
+        ResponseBean<Map<String,String>> maps = coinParkService.orderpending(orderInfoBean);
 //       Map<String,String> maps = coinParkService.pendingHistoryList(orderInfoBean);
 //        JSONArray jsonArray = JSONArray.parseArray(maps.get("result"));
 //        System.out.println(jsonArray.toString());
 //        JSONObject jsonObject = jsonArray.getJSONObject(0);
-//        System.out.println(jsonObject.toJSONString());
+//        System.out.println(maps.toString());
+
+
+////        while(true){
+//            OrderInfoBean orderInfoBean = new OrderInfoBean("24faa71aabc17ecfc684673a8071100f12a1b107","5b3af0219332758669cc32c6266285f41d390406","BIX_BTC","","1",null,null);
+//            CoinParkService coinParkService  = new CoinParkService();
+//            orderInfoBean.setSymbol("CP_USDT");
+//            orderInfoBean.setPrice(new BigDecimal(0.35).setScale(4,RoundingMode.HALF_DOWN));
+//            orderInfoBean.setAmount(new BigDecimal(100).setScale(4,RoundingMode.HALF_DOWN));
+//            orderInfoBean.setBuyOrSell("1");
+//            orderInfoBean.setIndex(System.currentTimeMillis()+"1");
+//            ResponseBean<Map<String,String>> maps = coinParkService.trade(orderInfoBean);
+//            //{"result":[{"result":12978028,"cmd":"orderpending/trade","index":"15307113558271"}]}
+//            if(maps != null){
+//                JSONObject jsonObject = JSONObject.parseObject(maps.getData().get("aaa"));
+//                JSONArray jsonArray = jsonObject.getJSONArray("result");
+//                JSONObject js1 = JSONObject.parseObject(jsonArray.get(0).toString());
+//                String orderId = js1.getString("result");
+//                if("".equals(orderId) || orderId == null){
+//                    System.out.println("1");
+//                }
+//
+//            }
+//            OrderInfoBean orderInfoBean1 = new OrderInfoBean("24faa71aabc17ecfc684673a8071100f12a1b107","5b3af0219332758669cc32c6266285f41d390406","BIX_BTC","","1",null,null);
+//            orderInfoBean1.setBuyOrSell("2");
+//            orderInfoBean1.setPrice(new BigDecimal(0.35).setScale(4,RoundingMode.HALF_DOWN));
+//            orderInfoBean1.setAmount(orderInfoBean.getAmount().multiply(orderInfoBean.getPrice()));
+//            orderInfoBean1.setIndex(System.currentTimeMillis()+"1");
+//            ResponseBean<Map<String,String>> maps1 = coinParkService.trade(orderInfoBean);
+//            System.out.println(maps1);
+////        }
+
 
     }
+
+
+
+
 }
