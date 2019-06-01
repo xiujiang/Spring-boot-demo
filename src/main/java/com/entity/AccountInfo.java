@@ -1,6 +1,12 @@
 package com.entity;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="account")
 public class AccountInfo {
+
     private long id;
 
     private String userNo;
