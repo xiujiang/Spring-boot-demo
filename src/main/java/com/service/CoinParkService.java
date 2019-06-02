@@ -308,59 +308,59 @@ public class CoinParkService implements CoinExchangerHandler {
         return returnMap(tradeURL,json);
     }
 
-
-    public static void main(String[] args) throws Exception {
-        OrderInfoBean orderInfoBean = new OrderInfoBean("24faa71aabc17ecfc684673a8071100f12a1b107","5b3af0219332758669cc32c6266285f41d390406","BIX_BTC","","1",null,null);
-        CoinParkService coinParkService  = new CoinParkService();
-        orderInfoBean.setSymbol("CP_USDT");
-        orderInfoBean.setPrice(new BigDecimal(0.35).setScale(4,RoundingMode.HALF_DOWN));
-        orderInfoBean.setAmount(new BigDecimal(104).setScale(4,RoundingMode.HALF_DOWN));
-//        orderInfoBean.setOrderId("12961283");
-        orderInfoBean.setBuyOrSell("1");
-        orderInfoBean.setIndex(System.currentTimeMillis()+"1");
-//        ResponseBean<Map<String,String>> maps = coinParkService.trade(orderInfoBean);
-        //{"result":[{"result":12978028,"cmd":"orderpending/trade","index":"15307113558271"}]}
-//        ResponseBean<Map<String,String>> maps = coinParkService.cancelTrade(orderInfoBean);
-//        ResponseBean<Map<String,String>> maps = coinParkService.getTransferAssets(orderInfoBean);
-        ResponseBean<Map<String,String>> maps = coinParkService.orderpending(orderInfoBean);
-//       Map<String,String> maps = coinParkService.pendingHistoryList(orderInfoBean);
-//        JSONArray jsonArray = JSONArray.parseArray(maps.get("result"));
-//        System.out.println(jsonArray.toString());
-//        JSONObject jsonObject = jsonArray.getJSONObject(0);
-//        System.out.println(maps.toString());
-
-
-////        while(true){
-//            OrderInfoBean orderInfoBean = new OrderInfoBean("24faa71aabc17ecfc684673a8071100f12a1b107","5b3af0219332758669cc32c6266285f41d390406","BIX_BTC","","1",null,null);
-//            CoinParkService coinParkService  = new CoinParkService();
-//            orderInfoBean.setSymbol("CP_USDT");
-//            orderInfoBean.setPrice(new BigDecimal(0.35).setScale(4,RoundingMode.HALF_DOWN));
-//            orderInfoBean.setAmount(new BigDecimal(100).setScale(4,RoundingMode.HALF_DOWN));
-//            orderInfoBean.setBuyOrSell("1");
-//            orderInfoBean.setIndex(System.currentTimeMillis()+"1");
-//            ResponseBean<Map<String,String>> maps = coinParkService.trade(orderInfoBean);
-//            //{"result":[{"result":12978028,"cmd":"orderpending/trade","index":"15307113558271"}]}
-//            if(maps != null){
-//                JSONObject jsonObject = JSONObject.parseObject(maps.getData().get("aaa"));
-//                JSONArray jsonArray = jsonObject.getJSONArray("result");
-//                JSONObject js1 = JSONObject.parseObject(jsonArray.get(0).toString());
-//                String orderId = js1.getString("result");
-//                if("".equals(orderId) || orderId == null){
-//                    System.out.println("1");
-//                }
 //
-//            }
-//            OrderInfoBean orderInfoBean1 = new OrderInfoBean("24faa71aabc17ecfc684673a8071100f12a1b107","5b3af0219332758669cc32c6266285f41d390406","BIX_BTC","","1",null,null);
-//            orderInfoBean1.setBuyOrSell("2");
-//            orderInfoBean1.setPrice(new BigDecimal(0.35).setScale(4,RoundingMode.HALF_DOWN));
-//            orderInfoBean1.setAmount(orderInfoBean.getAmount().multiply(orderInfoBean.getPrice()));
-//            orderInfoBean1.setIndex(System.currentTimeMillis()+"1");
-//            ResponseBean<Map<String,String>> maps1 = coinParkService.trade(orderInfoBean);
-//            System.out.println(maps1);
-////        }
-
-
-    }
+//    public static void main(String[] args) throws Exception {
+//        OrderInfoBean orderInfoBean = new OrderInfoBean("24faa71aabc17ecfc684673a8071100f12a1b107","5b3af0219332758669cc32c6266285f41d390406","BIX_BTC","","1",null,null);
+//        CoinParkService coinParkService  = new CoinParkService();
+//        orderInfoBean.setSymbol("CP_USDT");
+//        orderInfoBean.setPrice(new BigDecimal(0.35).setScale(4,RoundingMode.HALF_DOWN));
+//        orderInfoBean.setAmount(new BigDecimal(104).setScale(4,RoundingMode.HALF_DOWN));
+////        orderInfoBean.setOrderId("12961283");
+//        orderInfoBean.setBuyOrSell("1");
+//        orderInfoBean.setIndex(System.currentTimeMillis()+"1");
+////        ResponseBean<Map<String,String>> maps = coinParkService.trade(orderInfoBean);
+//        //{"result":[{"result":12978028,"cmd":"orderpending/trade","index":"15307113558271"}]}
+////        ResponseBean<Map<String,String>> maps = coinParkService.cancelTrade(orderInfoBean);
+////        ResponseBean<Map<String,String>> maps = coinParkService.getTransferAssets(orderInfoBean);
+//        ResponseBean<Map<String,String>> maps = coinParkService.orderpending(orderInfoBean);
+////       Map<String,String> maps = coinParkService.pendingHistoryList(orderInfoBean);
+////        JSONArray jsonArray = JSONArray.parseArray(maps.get("result"));
+////        System.out.println(jsonArray.toString());
+////        JSONObject jsonObject = jsonArray.getJSONObject(0);
+////        System.out.println(maps.toString());
+//
+//
+//////        while(true){
+////            OrderInfoBean orderInfoBean = new OrderInfoBean("24faa71aabc17ecfc684673a8071100f12a1b107","5b3af0219332758669cc32c6266285f41d390406","BIX_BTC","","1",null,null);
+////            CoinParkService coinParkService  = new CoinParkService();
+////            orderInfoBean.setSymbol("CP_USDT");
+////            orderInfoBean.setPrice(new BigDecimal(0.35).setScale(4,RoundingMode.HALF_DOWN));
+////            orderInfoBean.setAmount(new BigDecimal(100).setScale(4,RoundingMode.HALF_DOWN));
+////            orderInfoBean.setBuyOrSell("1");
+////            orderInfoBean.setIndex(System.currentTimeMillis()+"1");
+////            ResponseBean<Map<String,String>> maps = coinParkService.trade(orderInfoBean);
+////            //{"result":[{"result":12978028,"cmd":"orderpending/trade","index":"15307113558271"}]}
+////            if(maps != null){
+////                JSONObject jsonObject = JSONObject.parseObject(maps.getData().get("aaa"));
+////                JSONArray jsonArray = jsonObject.getJSONArray("result");
+////                JSONObject js1 = JSONObject.parseObject(jsonArray.get(0).toString());
+////                String orderId = js1.getString("result");
+////                if("".equals(orderId) || orderId == null){
+////                    System.out.println("1");
+////                }
+////
+////            }
+////            OrderInfoBean orderInfoBean1 = new OrderInfoBean("24faa71aabc17ecfc684673a8071100f12a1b107","5b3af0219332758669cc32c6266285f41d390406","BIX_BTC","","1",null,null);
+////            orderInfoBean1.setBuyOrSell("2");
+////            orderInfoBean1.setPrice(new BigDecimal(0.35).setScale(4,RoundingMode.HALF_DOWN));
+////            orderInfoBean1.setAmount(orderInfoBean.getAmount().multiply(orderInfoBean.getPrice()));
+////            orderInfoBean1.setIndex(System.currentTimeMillis()+"1");
+////            ResponseBean<Map<String,String>> maps1 = coinParkService.trade(orderInfoBean);
+////            System.out.println(maps1);
+//////        }
+//
+//
+//    }
 
 
 

@@ -129,7 +129,7 @@ public class HMacMD5 {
 		return sb.toString();
 	}
 
-	public static void main(String[] args) throws NoSuchAlgorithmException, UnsupportedEncodingException {
-		byte[] macmd5 = HMacMD5.getHmacMd5Bytes("7e62ff29f6548e2e7cf5307315fb2b1".getBytes(), "".getBytes());
-		}
+//	public static void main(String[] args) throws NoSuchAlgorithmException, UnsupportedEncodingException {
+//		byte[] macmd5 = HMacMD5.getHmacMd5Bytes("7e62ff29f6548e2e7cf5307315fb2b1".getBytes(), "".getBytes());
+//		}
 }

@@ -7,6 +7,8 @@ package com.dao;/*
  */
 
 
+import com.entity.AccountInfo;
+import com.util.Account;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
@@ -15,5 +17,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * @datetime 2019/6/2
  * @since 1.8
  */
-public interface Account  extends JpaRepository<Account, Long> {
+public interface AccountInfoDao  extends JpaRepository<AccountInfo, Long> {
 }

@@ -29,7 +29,7 @@ import java.util.Map;
 /**
  * 专为挖矿产生
  */
-@Component
+//@Component
 public class BuyOrSellTask  extends AbstractTask {
 
     @Resource

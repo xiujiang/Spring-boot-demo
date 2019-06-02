@@ -93,16 +93,16 @@ public class OkexService {
 //        System.out.println("当前订单信息为:"+maps);
         return  maps;
     }
-
-    public static void main(String[] args) throws Exception {
-//        String  s = "http://api.feixiaohao.com/coins/download/";
-//        byte[] bytes = HttpUtils2.postEntity(s,null);
-//        File file = new File("b.xls");
-//        OutputStream out = new FileOutputStream(file);
-//        out.write(bytes);
-//        out.close();
-//        System.out.println(file.l
-        ExcelUtil.getExcelAsFile("b.xls");
-    }
+//
+//    public static void main(String[] args) throws Exception {
+////        String  s = "http://api.feixiaohao.com/coins/download/";
+////        byte[] bytes = HttpUtils2.postEntity(s,null);
+////        File file = new File("b.xls");
+////        OutputStream out = new FileOutputStream(file);
+////        out.write(bytes);
+////        out.close();
+////        System.out.println(file.l
+//        ExcelUtil.getExcelAsFile("b.xls");
+//    }
 
 }

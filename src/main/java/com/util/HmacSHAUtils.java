@@ -24,7 +24,7 @@ public class HmacSHAUtils {
             mac.init(secret_key);
             byte[] signData = mac.doFinal(paramString.getBytes("UTF-8"));
             //进行加密 并转换成16进制
-            return Hex.encodeHexString(signData);
+            return Hex.encodeHex(signData).toString();
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
             return "";

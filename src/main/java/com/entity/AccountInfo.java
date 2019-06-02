@@ -1,26 +1,38 @@
 package com.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Table(name="account")
 public class AccountInfo {
-
-    private long id;
-
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @Id
+    private Integer id;
+    @Column(name = "user_no")
     private String userNo;
+    @Column(name = "address")
     private String address;
+    @Column(name = "address_name")
     private String addressName;
+    @Column(name = "remark")
     private String remark;
+    @Column(name = "password")
     private String password;
+    @Column(name = "status")
     private String status;
+    @Column(name = "create_time")
+    private Date createTime;
+    @Column(name = "last_update_time")
+    private Date lastUpdateTime;
 
-    public long getId() {
+
+
+    public Integer getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -72,6 +84,22 @@ public class AccountInfo {
         this.status = status;
     }
 
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    public Date getLastUpdateTime() {
+        return lastUpdateTime;
+    }
+
+    public void setLastUpdateTime(Date lastUpdateTime) {
+        this.lastUpdateTime = lastUpdateTime;
+    }
+
     @Override
     public String toString() {
         return "AccountInfo{" +
@@ -82,6 +110,8 @@ public class AccountInfo {
                 ", remark='" + remark + '\'' +
                 ", password='" + password + '\'' +
                 ", status='" + status + '\'' +
+                ", createTime=" + createTime +
+                ", lastUpdateTime=" + lastUpdateTime +
                 '}';
     }
 }

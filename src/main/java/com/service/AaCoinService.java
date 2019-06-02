@@ -5,7 +5,6 @@ import com.alibaba.fastjson.JSONObject;
 import com.bean.ResponseBean;
 import com.handler.CoinExchangerHandler;
 import com.bean.OrderInfoBean;
-import com.sun.deploy.util.StringUtils;
 import com.util.HmacSHAUtils;
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
@@ -397,23 +396,23 @@ public class AaCoinService implements CoinExchangerHandler {
         return null;
     }
 
-    public static void main(String[] args) throws Exception {
-        final String secretKey = "80a2d314edda4d3f92463aa5dd5ffd14";
-        final String accessKey = "697a9a56-34db-4b9b-a0c9-fcfc7f7ddab9";
-        AaCoinService aaCoinService = new AaCoinService();
-        OrderInfoBean orderInfoBean = new OrderInfoBean();
-        orderInfoBean.setSymbol("AAT_ETH");
-        orderInfoBean.setAmount(new BigDecimal(15));
-        orderInfoBean.setPrice(new BigDecimal("0.00017465"));
-        orderInfoBean.setBuyOrSell("1");
-        orderInfoBean.setSecret(secretKey);
-        orderInfoBean.setApiKey(accessKey);
-        System.out.println(orderInfoBean.toString());
-        ResponseBean<Map<String,String>> resp =  aaCoinService.orderpending(orderInfoBean);
-        System.out.println(resp.toString());
-
-
-
-    }
+//    public static void main(String[] args) throws Exception {
+//        final String secretKey = "80a2d314edda4d3f92463aa5dd5ffd14";
+//        final String accessKey = "697a9a56-34db-4b9b-a0c9-fcfc7f7ddab9";
+//        AaCoinService aaCoinService = new AaCoinService();
+//        OrderInfoBean orderInfoBean = new OrderInfoBean();
+//        orderInfoBean.setSymbol("AAT_ETH");
+//        orderInfoBean.setAmount(new BigDecimal(15));
+//        orderInfoBean.setPrice(new BigDecimal("0.00017465"));
+//        orderInfoBean.setBuyOrSell("1");
+//        orderInfoBean.setSecret(secretKey);
+//        orderInfoBean.setApiKey(accessKey);
+//        System.out.println(orderInfoBean.toString());
+//        ResponseBean<Map<String,String>> resp =  aaCoinService.orderpending(orderInfoBean);
+//        System.out.println(resp.toString());
+//
+//
+//
+//    }
 
 }

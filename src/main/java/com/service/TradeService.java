@@ -39,18 +39,7 @@ public class TradeService {
         }
         Map<String,String> returnMaps = responseOrder.getData();
 
-        //3.完成订单
-        Order order = new Order();
-        order.setAmount(orderInfoBean.getAmount().toString());
-        order.setPrice(orderInfoBean.getPrice());
-        order.setSymbol(orderInfoBean.getSymbol());
-        order.setTotal(orderInfoBean.getAmount().multiply(orderInfoBean.getPrice()).toString());
-        order.setStatus("SUCCESS");
-        order.setOrderId(returnMaps.get("orderId"));
-        order.setType(orderInfoBean.getBuyOrSell());
-        order.setMerNo(orderInfoBean.getMemberNo());
-        orderDao.save(order);
-        //返回交易结果
+
         return clickFarmingTrade;
     }
 

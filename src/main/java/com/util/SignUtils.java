@@ -58,8 +58,8 @@ public class SignUtils {
       return s;
     }
 
-    public static void main(String[] args) throws UnsupportedEncodingException, NoSuchAlgorithmException {
-        String s = coinParkSign("[{\"cmd\":\"user/userInfo\",\"body\":{}}]","7b58254791ada6c0194e6341953f862aff9a91b5");
-        System.out.println(s);
-    }
+//    public static void main(String[] args) throws UnsupportedEncodingException, NoSuchAlgorithmException {
+//        String s = coinParkSign("[{\"cmd\":\"user/userInfo\",\"body\":{}}]","7b58254791ada6c0194e6341953f862aff9a91b5");
+//        System.out.println(s);
+//    }
 }
